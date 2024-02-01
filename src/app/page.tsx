@@ -36,7 +36,7 @@ export default function Home() {
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Your marketplace for high-quality{" "}
-            <span className="text-blue-600">digital assets</span>
+            <span className="text-red-600">digital assets</span>
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
             Welcome to PhoenixValor. Every asset on our platform is verified by
@@ -62,7 +62,7 @@ export default function Home() {
                 className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
               >
                 <div className="md:flex-shrink-0 flex justify-center">
-                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-900">
+                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-red-100 text-red-900">
                     {<perk.Icon className="w-1/3 h-1/3" />}
                   </div>
                 </div>
