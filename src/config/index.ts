@@ -30,7 +30,7 @@ export const PRODUCT_CATEGORIES = [
         imageSrc: "/nav/icons/picks.jpg",
       },
       {
-        name: "New Arrivals",
+        name: "New Icons",
         href: "#",
         imageSrc: "/nav/icons/new.jpg",
       },
