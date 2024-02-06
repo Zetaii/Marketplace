@@ -36,12 +36,12 @@ const start = async () => {
   app.use((req, res) => nextHandler(req, res))
 
   nextApp.prepare().then(() => {
-    // payload.logger.info(`Server listening on port ${PORT}`)
+    payload.logger.info(`Server listening on port ${PORT}`)
 
     app.listen(PORT, async () => {
-      // payload.logger.info(
-      //   `Next.js App URL: ${process.env.NEXT_PUBLIC_SERVER_URL}`
-      // )
+      payload.logger.info(
+        `Next.js App URL: ${process.env.NEXT_PUBLIC_SERVER_URL}`
+      )
     })
   })
 }
