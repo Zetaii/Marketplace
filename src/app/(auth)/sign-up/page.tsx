@@ -5,16 +5,15 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
-import { ArrowRight } from "lucide-react"
-import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ArrowRight } from "lucide-react"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
 
-import { z } from "zod"
 import { trpc } from "@/trpc/client"
 
 const Page = () => {
