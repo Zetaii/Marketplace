@@ -4,9 +4,12 @@ import { Icons } from "./Icons"
 import MaxWidthWrapper from "./MaxWidthWrapper"
 import NavItems from "./NavItems"
 import { buttonVariants } from "./ui/button"
+import { cookies } from "next/headers"
+import { getServerSideUser } from "@/lib/payload-utils"
 
-const Navbar = () => {
-  const user = null
+const Navbar = async () => {
+  const nextCookies = cookies()
+  const { user } = await getServerSideUser(nextCookies)
 
   return (
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
@@ -28,7 +31,7 @@ const Navbar = () => {
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {user ? null : (
                     <Link
-                      href="/Login"
+                      href="/sign-in"
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       Login
