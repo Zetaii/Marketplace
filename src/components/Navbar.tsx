@@ -6,6 +6,7 @@ import NavItems from "./NavItems"
 import { buttonVariants } from "./ui/button"
 import { cookies } from "next/headers"
 import { getServerSideUser } from "@/lib/payload-utils"
+import UserAccountNav from "./UserAccountNav"
 
 const Navbar = async () => {
   const nextCookies = cookies()
@@ -43,7 +44,7 @@ const Navbar = async () => {
                   )}
 
                   {user ? (
-                    <p></p>
+                    <UserAccountNav user={user} />
                   ) : (
                     <Link
                       href="/sign-up"
