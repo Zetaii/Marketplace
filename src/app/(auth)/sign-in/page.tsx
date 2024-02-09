@@ -5,15 +5,15 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ArrowRight, Loader2 } from "lucide-react"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
+
 import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight } from "lucide-react"
-import Link from "next/link"
-import { useForm } from "react-hook-form"
-
 import { trpc } from "@/trpc/client"
 import { toast } from "sonner"
 import { ZodError } from "zod"
@@ -32,6 +32,7 @@ const Page = () => {
   const continueAsBuyer = () => {
     router.replace("/sign-in", undefined)
   }
+
   const {
     register,
     handleSubmit,
@@ -41,27 +42,28 @@ const Page = () => {
   })
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
-    onSuccess: () => {
-      toast.success("Signed in successfully!")
-
+    onSuccess: async () => {
       router.refresh()
+      toast.success("Signed in successfully")
 
       if (origin) {
         router.push(`/${origin}`)
+        router.refresh()
         return
       }
+
       if (isSeller) {
         router.push("/sell")
+        router.refresh()
         return
       }
 
       router.push("/")
+      router.refresh()
     },
     onError: (err) => {
       if (err.data?.code === "UNAUTHORIZED") {
-        toast.error("Invalid email or password")
-      } else {
-        toast.error("An error occurred")
+        toast.error("Invalid email or password.")
       }
     },
   })
@@ -76,9 +78,10 @@ const Page = () => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
             <Icons.logo className="h-20 w-20" />
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-semibold tracking-tight">
               Sign in to your {isSeller ? "seller" : ""} account
             </h1>
+
             <Link
               className={buttonVariants({
                 variant: "link",
@@ -86,7 +89,7 @@ const Page = () => {
               })}
               href="/sign-up"
             >
-              Don't have an account?
+              Don&apos;t have an account?
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -101,7 +104,7 @@ const Page = () => {
                     className={cn({
                       "focus-visible:ring-red-500": errors.email,
                     })}
-                    placeholder="email@example.com"
+                    placeholder="you@example.com"
                   />
                   {errors?.email && (
                     <p className="text-sm text-red-500">
@@ -109,11 +112,12 @@ const Page = () => {
                     </p>
                   )}
                 </div>
+
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="password">Password</Label>
                   <Input
-                    type="password"
                     {...register("password")}
+                    type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}
@@ -125,16 +129,22 @@ const Page = () => {
                     </p>
                   )}
                 </div>
-                <Button>Sign in</Button>
+
+                <Button disabled={isLoading}>
+                  {isLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Sign in
+                </Button>
               </div>
             </form>
 
             <div className="relative">
               <div
-                area-hidden="true"
+                aria-hidden="true"
                 className="absolute inset-0 flex items-center"
               >
-                <span className="w-full border-t"></span>
+                <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-background px-2 text-muted-foreground">
@@ -157,7 +167,7 @@ const Page = () => {
                 variant="secondary"
                 disabled={isLoading}
               >
-                Continue as Seller
+                Continue as seller
               </Button>
             )}
           </div>
