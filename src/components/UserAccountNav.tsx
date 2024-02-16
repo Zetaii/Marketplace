@@ -11,6 +11,7 @@ import {
 } from "./ui/dropdown-menu"
 import Link from "next/link"
 import { useAuth } from "@/hooks/user-auth"
+
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
 
