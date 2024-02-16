@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <title>Phoenix Valor</title>
       <body
         className={cn(
           "relative h-full font-sans antialiased ",
