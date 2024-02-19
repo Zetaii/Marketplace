@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost", "marketplace-delta-lemon.vercel.app"],
+    domains: ["localhost", "phoenixvalormarket.onrender.com"],
   },
 }
 

@@ -41,4 +41,8 @@ export const PRODUCT_CATEGORIES = [
       },
     ],
   },
+  {
+    label: "Shoes",
+    value: "Shoes" as const,
+  },
 ]

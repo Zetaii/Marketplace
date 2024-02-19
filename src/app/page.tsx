@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import MaxWidthWrapper from "../components/MaxWidthWrapper"
 import ProductReel from "../components/ProductReel"
 import { Button, buttonVariants } from "../components/ui/button"
@@ -78,6 +79,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <Footer />
         </MaxWidthWrapper>
       </section>
     </>

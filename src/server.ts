@@ -10,6 +10,7 @@ import nextBuild from "next/dist/build"
 import path from "path"
 import { PayloadRequest } from "payload/types"
 import { parse } from "url"
+import { stripeWebhookHandler } from "./webhooks"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -35,7 +36,7 @@ const start = async () => {
     },
   })
 
-  // app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler)
+  app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler)
 
   const payload = await getPayloadClient({
     initOptions: {
