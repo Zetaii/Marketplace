@@ -71,6 +71,7 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var build_1 = __importDefault(require("next/dist/build"));
 var path_1 = __importDefault(require("path"));
 var url_1 = require("url");
+var webhooks_1 = require("./webhooks");
 var app = (0, express_1.default)();
 var PORT = Number(process.env.PORT) || 3000;
 var createContext = function (_a) {
@@ -90,6 +91,7 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
                         req.rawBody = buffer;
                     },
                 });
+                app.post("/api/webhooks/stripe", webhookMiddleware, webhooks_1.stripeWebhookHandler);
                 return [4 /*yield*/, (0, get_payload_1.getPayloadClient)({
                         initOptions: {
                             express: app,
@@ -103,25 +105,6 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
                     })];
             case 1:
                 payload = _a.sent();
-                app.post("/api/webhooks/stripe", webhookMiddleware);
-                if (process.env.NEXT_BUILD) {
-                    app.listen(PORT, function () { return __awaiter(void 0, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    payload.logger.info("Next.js is building for production");
-                                    // @ts-expect-error
-                                    return [4 /*yield*/, (0, build_1.default)(path_1.default.join(__dirname, "../"))];
-                                case 1:
-                                    // @ts-expect-error
-                                    _a.sent();
-                                    process.exit();
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); });
-                    return [2 /*return*/];
-                }
                 if (process.env.NEXT_BUILD) {
                     app.listen(PORT, function () { return __awaiter(void 0, void 0, void 0, function () {
                         return __generator(this, function (_a) {

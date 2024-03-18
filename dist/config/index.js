@@ -44,4 +44,8 @@ exports.PRODUCT_CATEGORIES = [
             },
         ],
     },
+    {
+        label: "Shoes",
+        value: "Shoes",
+    },
 ];

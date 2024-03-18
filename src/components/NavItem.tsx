@@ -49,7 +49,7 @@ const NavItem = ({ isAnyOpen, category, handleOpen, isOpen }: NavItemProps) => {
             <div className="mx-auto max-w-7-xl px-8">
               <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
                 <div className="col-span-4 col-start-1 grid grid-cols-3 gap-x-8">
-                  {category.featured.map((item, index) => (
+                  {category.featured?.map((item, index) => (
                     <div
                       key={`${category.value}-${item.name}-${index}`}
                       className="group relative text-base sm:text-sm"
